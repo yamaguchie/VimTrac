@@ -132,10 +132,15 @@ if !has("python")
     finish
 endif
 
-if filereadable($VIMRUNTIME."/plugin/trac.py")
-  pyfile $VIMRUNTIME/plugin/trac.py
-elseif filereadable($HOME."/.vim/plugin/trac.py")
-  pyfile $HOME/.vim/plugin/trac.py
+"20130514 yamaguchi modified
+"if filereadable($VIMRUNTIME."/plugin/trac.py")
+"  pyfile $VIMRUNTIME/plugin/trac.py
+"elseif filereadable($HOME."/.vim/plugin/trac.py")
+"  pyfile $HOME/.vim/plugin/trac.py
+if filereadable($VIMRUNTIME."/bundle/VimTrac/plugin/trac.py")
+  pyfile $VIMRUNTIME/bundle/VimTrac/plugin/trac.py
+elseif filereadable($HOME."/.vim/bundle/VimTrac/plugin/trac.py")
+  pyfile $HOME/.vim/bundle/VimTrac/plugin/trac.py
 else
   call confirm('trac.vim: Unable to find trac.py. Place it in either your home vim directory or in the Vim runtime directory.', 'OK')
   finish
@@ -185,7 +190,7 @@ endif
 "This can be modified to speed up queries
 if !exists('g:tracTicketClause')
     let g:tracTicketClause = 'status!=closed'
-endif            
+endif
 
 "Set this to 1 if you wan the ticket view to ignore attribute changes which
 "can clutter up the view
@@ -487,7 +492,7 @@ endfun
 
 "Callback Function for Minibufexplorer et al windows that dont like being
 "closed by the :only command
-"TODO add other common plugins that may be affected 
+"TODO add other common plugins that may be affected
 "see OpenCloseCallbacks in the wiki
 fun TracOpenViewCallback()
     try
